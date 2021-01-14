@@ -13,7 +13,9 @@ jobs:
 - job: Build
   steps:
   - task: Gradle@2
-    displayName: 'gradlew build'
     inputs:
-      tasks: '$(Parameters.tasks)'
-
+      gradleWrapperFile: 'gradlew'
+      tasks: 'build'
+      publishJUnitResults: false
+      javaHomeOption: 'JDKVersion'
+      sonarQubeRunAnalysis: false
