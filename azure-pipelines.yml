@@ -11,6 +11,7 @@ pool:
 
 jobs:
 - job: Build
+  displayName: Building project
   steps:
   - task: Gradle@2
     inputs:
@@ -19,3 +20,9 @@ jobs:
       publishJUnitResults: false
       javaHomeOption: 'JDKVersion'
       sonarQubeRunAnalysis: false
+
+- job: UnitTests
+  displayName: Running Unit Tests 
+  dependsOn: Build
+  steps:
+    - script: ./gradlew :app:testDebugUnitTest
